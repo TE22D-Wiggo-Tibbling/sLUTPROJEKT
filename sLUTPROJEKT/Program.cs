@@ -3,30 +3,38 @@ using System.Runtime.CompilerServices;
 using Raylib_cs;
 
 
-internal class Program
-{
-    private static void Main(string[] args)
-    {
-        Raylib.InitWindow(500, 900, "Hello World");
+        int screenWidth = 500;
+        int screenHeight = 900;
+
+        Raylib.InitWindow(screenWidth, screenHeight, "Hello World");
         Raylib.SetTargetFPS(60);
 
-        player player1 = new player();
+        Player player = new Player();
+
+
+        Rectangle platform = new Rectangle(screenWidth/2,800,80,5);
+
 
         while (!Raylib.WindowShouldClose())
         {
 
-            player1.Rörelse();
-
+            player.Rörelse();
+           if( Raylib.CheckCollisionRecs(player.characterRec,platform)&&player.movement.Y>0){
+            player.movement.Y = player.bounce;
+           }
 
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.Blue);
 
-            player1.Rita();
+            player.Rita();
 
            
-            Raylib.DrawRectangle(20, 20, 20, 20, Color.Black);
+            Raylib.DrawRectangleRec(platform, Color.Green);
             Raylib.EndDrawing();
         }
-    }
-}
 
+
+public class Plattform
+{
+    
+}
