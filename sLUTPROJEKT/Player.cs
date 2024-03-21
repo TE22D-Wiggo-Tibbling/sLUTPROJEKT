@@ -7,7 +7,7 @@ public class Player
 
     public Vector2 movement = new Vector2(0, 0);
 
-    private float speed = 3;
+    private float speed = 6;
 
     private float gravity = 0.35f;
 

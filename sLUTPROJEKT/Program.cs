@@ -3,59 +3,79 @@ using System.Runtime.CompilerServices;
 using Raylib_cs;
 
 
-        int screenWidth = 500;
-        int screenHeight = 900;
+int screenWidth = 500;
+int screenHeight = 900;
 
-        Random random = new Random();
+Random random = new Random();
 
-        Raylib.InitWindow(screenWidth, screenHeight, "Hello World");
-        Raylib.SetTargetFPS(60);
+Raylib.InitWindow(screenWidth, screenHeight, "Hello World");
+Raylib.SetTargetFPS(60);
 
-        Player player = new Player();
+Player player = new Player();
 
-        Plattform plattform = new Plattform();
 
-        for (int i = 0; i < screenHeight; i++)
+
+List<Plattform> platformar = new();
+
+//Gör fem tärningar
+for (int i = 800; i > -1000; i--)
+{
+    platformar.Add(new Plattform(i * -100));
+}
+
+for (int i = 0; i < screenHeight; i++)
+{
+
+}
+
+
+while (!Raylib.WindowShouldClose())
+{
+
+
+    player.Rörelse();
+
+    foreach (Plattform colision in platformar)
+    {
+        if (Raylib.CheckCollisionRecs(player.characterRec, colision.size) && player.movement.Y > 0 && player.characterRec.Y+player.characterRec.Height >colision.size.Y)
         {
-
-        }
-
-
-        while (!Raylib.WindowShouldClose())
-        {
-        plattform.skap();   
-            player.Rörelse();
-           if( Raylib.CheckCollisionRecs(player.characterRec,plattform.size)&&player.movement.Y>0){
             player.movement.Y = player.bounce;
-           }
-
-            Raylib.BeginDrawing();
-            Raylib.ClearBackground(Color.Blue);
-
-            player.Rita();
-            plattform.rita();
-
-           
-            Raylib.EndDrawing();
+            foreach (Plattform flyt in platformar)
+            {
+                
+            flyt.size.Y +=100;
+            }
         }
+    }
+
+    Raylib.BeginDrawing();
+    Raylib.ClearBackground(Color.Blue);
+
+    player.Rita();
+    foreach (Plattform pos in platformar)
+    {
+        pos.rita();
+    }
+
+
+    Raylib.EndDrawing();
+}
 
 
 public class Plattform
 {
     static Random random1 = new Random();
 
-     public Rectangle size = new Rectangle();
-    
-    public void skap(){
+    public Rectangle size = new Rectangle();
 
-    for (int i = 800; i < 0; i--)
+    public Plattform(int nivå)
     {
-     size = new(random1.Next(0,500),800,80,5);
-    }
+        size = new(random1.Next(0, 500), nivå, 80, 5);
     }
 
-    public void rita(){
-            Raylib.DrawRectangleRec(size, Color.Green);
+    public void rita()
+    {
+        Raylib.DrawRectangleRec(size, Color.Green);
     }
-    
+
 }
