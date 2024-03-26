@@ -9,11 +9,11 @@ int screenHeight = 900;
 Random random = new Random();
 
 Raylib.InitWindow(screenWidth, screenHeight, "Hello World");
-Raylib.SetTargetFPS(60);
+Raylib.SetTargetFPS(120);
 
 Player player = new Player();
 
-
+int points = 0;
 
 List<Plattform> platformar = new();
 
@@ -40,17 +40,27 @@ while (!Raylib.WindowShouldClose())
         if (Raylib.CheckCollisionRecs(player.characterRec, colision.size) && player.movement.Y > 0 && player.characterRec.Y+player.characterRec.Height >colision.size.Y)
         {
             player.movement.Y = player.bounce;
-            foreach (Plattform flyt in platformar)
-            {
-                
-            flyt.size.Y +=100;
-            }
+            colision.size.X = 6000;
+            points++;
         }
+    }
+
+    platformar.RemoveAll(p => p.size.X == 6000);
+
+
+
+    if (player.characterRec.Y<500&&player.movement.Y<0)
+    {
+        foreach (Plattform flyt in platformar)
+            {          
+            flyt.size.Y -=player.movement.Y;
+            }
     }
 
     Raylib.BeginDrawing();
     Raylib.ClearBackground(Color.Blue);
 
+    Raylib.DrawText(points.ToString(),screenWidth/2,100,50,Color.Black);
     player.Rita();
     foreach (Plattform pos in platformar)
     {
@@ -70,7 +80,7 @@ public class Plattform
 
     public Plattform(int nivå)
     {
-        size = new(random1.Next(0, 500), nivå, 80, 5);
+        size = new(random1.Next(0, 500-80), nivå, 80, 5);
     }
 
     public void rita()

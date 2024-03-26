@@ -5,15 +5,15 @@ using Raylib_cs;
 public class Player
 {
 
-    public Vector2 movement = new Vector2(0, 0);
+    public Vector2 movement = new Vector2(0, 0.1f);
 
-    private float speed = 6;
+    private float speed = 3;
 
-    private float gravity = 0.35f;
+    private float gravity = 0.1f;
 
-    public Rectangle characterRec = new Rectangle(250, 459, 50, 50);
+    public Rectangle characterRec = new Rectangle(250, 600, 50, 50);
 
-    public float bounce = -13;
+    public float bounce = -5;
     public void Rörelse()
     {
         movement.X = Vector2.Zero.X;
@@ -26,8 +26,6 @@ public class Player
             movement.X = speed;
         }
 
-        characterRec.X += movement.X;
-        characterRec.Y += movement.Y;
 
         movement.Y += gravity;
 
@@ -36,10 +34,20 @@ public class Player
             movement.Y = bounce;
         }
 
-        if(Raylib.IsKeyDown(KeyboardKey.W)){
+        characterRec.X += movement.X;
+        characterRec.Y += movement.Y;
+
+        if (characterRec.Y < 490)
+        {
+            characterRec.Y -= movement.Y;
+        }
+
+        if (Raylib.IsKeyDown(KeyboardKey.W))
+        {
             bounce--;
         }
-        if(Raylib.IsKeyDown(KeyboardKey.S)){
+        if (Raylib.IsKeyDown(KeyboardKey.S))
+        {
             bounce++;
         }
 
