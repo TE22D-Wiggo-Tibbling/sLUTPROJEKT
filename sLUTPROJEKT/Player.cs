@@ -11,7 +11,7 @@ public class Player
 
     private float gravity = 0.1f;
 
-    public Rectangle characterRec = new Rectangle(250, 600, 50, 50);
+    public Rectangle characterRec = new Rectangle(250, 800, 50, 50);
 
     public float bounce = -5;
     public void Rörelse()
