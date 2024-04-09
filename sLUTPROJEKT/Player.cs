@@ -9,7 +9,7 @@ public class Player
 
     private float speed = 3;
 
-    private float gravity = 0.1f;
+    public float gravity = 0.1f;
 
     public Rectangle characterRec = new Rectangle(250, 800, 50, 50);
 
@@ -41,17 +41,6 @@ public class Player
         {
             characterRec.Y -= movement.Y;
         }
-
-        if (Raylib.IsKeyDown(KeyboardKey.W))
-        {
-            bounce--;
-        }
-        if (Raylib.IsKeyDown(KeyboardKey.S))
-        {
-            bounce++;
-        }
-
-
     }
 
     public void Rita()
