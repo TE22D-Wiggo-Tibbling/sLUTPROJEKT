@@ -11,7 +11,7 @@ Random random = new Random();
 Raylib.InitWindow(screenWidth, screenHeight, "Hello World");
 Raylib.SetTargetFPS(120);
 
-string scene = "game";
+string scene = "start";
 
 Player player = new Player();
 
@@ -26,7 +26,7 @@ List<Plattform> platformar = new();
 
 // ----------------------------------***start***-------------------------------------------
 Vector2 startButtonSize = new(400,300);
-Rectangle startButton = new Rectangle(600,screenWidth/2-startButtonSize.Y/2,startButtonSize);
+Rectangle startButton = new Rectangle(600,screenWidth/2,100,100);
 
 
 
@@ -153,9 +153,9 @@ while (!Raylib.WindowShouldClose())
 
     if (scene == "start")
     {
-        Raylib.ClearBackground(Color.Red);
+        // Raylib.ClearBackground(Color.Red);
 
-        Raylib.DrawRectangleRec(startButton,Color.Blank);
+        Raylib.DrawRectangleRec(startButton,Color.White);
     }
 
     Raylib.EndDrawing();
