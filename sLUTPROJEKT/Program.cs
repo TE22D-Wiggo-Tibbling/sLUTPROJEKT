@@ -86,6 +86,7 @@ while (!Raylib.WindowShouldClose())
         if (player.characterRec.Y > 900)
         {
             scene = "start";
+            Raylib.OpenURL("https://www.youtube.com/watch?v=4JzDttgdILQ");
         }
     }
 
@@ -98,8 +99,8 @@ while (!Raylib.WindowShouldClose())
         if (Raylib.CheckCollisionRecs(mouseRec, startButton) && Raylib.IsMouseButtonPressed(MouseButton.Left))
         {
 
-            // scene = "game";
-            Raylib.OpenURL("https://docs.google.com/spreadsheets/d/1G_Ol_Z6tuO1Rdm_U1JcuWwfSZqEWkVuJzmiZlK9tZ6M/edit#gid=0");
+            scene = "game";
+
 
             // ------------------------------------------------------------------------------------------
             // --------------------------------------***RESET***-----------------------------------------
@@ -153,7 +154,7 @@ while (!Raylib.WindowShouldClose())
         Raylib.ClearBackground(Color.Brown);
 
         Raylib.DrawRectangleRec(startButton, Color.Red);
-        Raylib.DrawText("start", screenWidth / 2 - startTextWidth / 2, 200, 100, Color.Black);
+        Raylib.DrawText("start", screenWidth / 2 - startTextWidth / 2, 700, 100, Color.Black);
 
     }
     Raylib.EndDrawing();
