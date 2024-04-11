@@ -25,9 +25,9 @@ List<Plattform> platformar = new();
 
 
 // ----------------------------------***start***-------------------------------------------
-Vector2 startButtonSize = new(400,300);
-Rectangle startButton = new Rectangle(600,screenWidth/2,100,100);
-
+Vector2 startButtonSize = new(400, 100);
+Rectangle startButton = new Rectangle(screenWidth / 2 - startButtonSize.X / 2, 700, startButtonSize);
+int startTextWidth = Raylib.MeasureText("start", 100);
 
 
 while (!Raylib.WindowShouldClose())
@@ -35,6 +35,7 @@ while (!Raylib.WindowShouldClose())
 
     Vector2 mouse = Raylib.GetMousePosition();
 
+    Rectangle mouseRec = new Rectangle(mouse.X, mouse.Y, 1, 1);
     // ------------------------------------------------------------------------------------------
     // --------------------------------------***GAME***------------------------------------------
     // ------------------------------------------------------------------------------------------
@@ -94,16 +95,15 @@ while (!Raylib.WindowShouldClose())
     if (scene == "start")
     {
 
-
-
-        // ------------------------------------------------------------------------------------------
-        // --------------------------------------***RESET***------------------------------------------
-        // ------------------------------------------------------------------------------------------
-        if (Raylib.IsKeyPressed(KeyboardKey.One))
+        if (Raylib.CheckCollisionRecs(mouseRec, startButton) && Raylib.IsMouseButtonPressed(MouseButton.Left))
         {
 
-            scene = "game";
+            // scene = "game";
+            Raylib.OpenURL("https://docs.google.com/spreadsheets/d/1G_Ol_Z6tuO1Rdm_U1JcuWwfSZqEWkVuJzmiZlK9tZ6M/edit#gid=0");
 
+            // ------------------------------------------------------------------------------------------
+            // --------------------------------------***RESET***-----------------------------------------
+            // ------------------------------------------------------------------------------------------
 
             // -----------------------------------------***POINTS***-------------------------------------
             points = 0;
@@ -124,7 +124,6 @@ while (!Raylib.WindowShouldClose())
             // --------------------------------------***PLAYER***----------------------------------------
             player.characterRec.X = screenWidth / 2 - player.characterRec.Width / 2;
             player.characterRec.Y = 700;
-
         }
     }
 
@@ -136,8 +135,6 @@ while (!Raylib.WindowShouldClose())
     {
 
         Raylib.ClearBackground(Color.Blue);
-
-        Raylib.DrawText(mouse.ToString(),300,500,70,Color.Black);
 
         int pointsWidth = Raylib.MeasureText(points.ToString(), 50);
         Raylib.DrawText(points.ToString(), screenWidth / 2 - pointsWidth / 2, 100, 50, Color.Black);
@@ -153,29 +150,11 @@ while (!Raylib.WindowShouldClose())
 
     if (scene == "start")
     {
-        // Raylib.ClearBackground(Color.Red);
+        Raylib.ClearBackground(Color.Brown);
 
-        Raylib.DrawRectangleRec(startButton,Color.White);
+        Raylib.DrawRectangleRec(startButton, Color.Red);
+        Raylib.DrawText("start", screenWidth / 2 - startTextWidth / 2, 200, 100, Color.Black);
+
     }
-
     Raylib.EndDrawing();
-}
-
-
-public class Plattform
-{
-    static Random random1 = new Random();
-
-    public Rectangle size = new Rectangle();
-
-    public Plattform(int nivå)
-    {
-        size = new(random1.Next(0, 500 - 80), nivå, 80, 5);
-    }
-
-    public void rita()
-    {
-        Raylib.DrawRectangleRec(size, Color.Green);
-    }
-
 }

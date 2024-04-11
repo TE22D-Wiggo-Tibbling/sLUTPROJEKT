@@ -48,3 +48,6 @@ public class Player
         Raylib.DrawRectangleRec(characterRec, Color.Black);
     }
 }
+
+
+
