@@ -39,9 +39,9 @@ int startTextWidth = Raylib.MeasureText("start", 100) / 2;
 
 while (!Raylib.WindowShouldClose())
 {
-Vector2 mouse = Raylib.GetMousePosition();
+    Vector2 mouse = Raylib.GetMousePosition();
 
-Rectangle mouseRec = new Rectangle(mouse.X, mouse.Y, 1, 1);
+    Rectangle mouseRec = new Rectangle(mouse.X, mouse.Y, 1, 1);
 
 
     // ------------------------------------------------------------------------------------------
