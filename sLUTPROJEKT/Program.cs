@@ -39,10 +39,11 @@ int startTextWidth = Raylib.MeasureText("start", 100) / 2;
 
 while (!Raylib.WindowShouldClose())
 {
+Vector2 mouse = Raylib.GetMousePosition();
 
-    Vector2 mouse = Raylib.GetMousePosition();
+Rectangle mouseRec = new Rectangle(mouse.X, mouse.Y, 1, 1);
 
-    Rectangle mouseRec = new Rectangle(mouse.X, mouse.Y, 1, 1);
+
     // ------------------------------------------------------------------------------------------
     // --------------------------------------***GAME***------------------------------------------
     // ------------------------------------------------------------------------------------------
@@ -94,7 +95,7 @@ while (!Raylib.WindowShouldClose())
         if (player.characterRec.Y > 900)
         {
             scene = "start";
-            // Raylib.OpenURL("https://www.youtube.com/watch?v=4JzDttgdILQ");
+            Raylib.OpenURL("https://www.youtube.com/watch?v=4JzDttgdILQ");
         }
 
 
@@ -106,14 +107,9 @@ while (!Raylib.WindowShouldClose())
     // ------------------------------------------------------------------------------------------
     if (scene == "start")
     {
-
-
-
-
         if (Raylib.CheckCollisionRecs(mouseRec, startButton) && Raylib.IsMouseButtonPressed(MouseButton.Left))
         {
 
-            scene = "game";
 
             // ------------------------------------------------------------------------------------------
             // --------------------------------------***RESET***-----------------------------------------
@@ -132,22 +128,19 @@ while (!Raylib.WindowShouldClose())
             platformar[0].size.X = screenWidth / 2 - platformar[0].size.Width / 2;
 
             // ------------------------------------------***STARTGROUND***-------------------------------
-            startGround = new Rectangle(0, 825, screenWidth, screenHeight - startGround.Y);
 
+            startGround = new(0, 850, screenWidth, screenHeight - 850);
 
             // --------------------------------------***PLAYER***----------------------------------------
             player.characterRec.X = screenWidth / 2 - player.characterRec.Width / 2;
-            player.characterRec.Y = startGround.Y-player.characterRec.Height;
+            player.characterRec.Y = 750;
+
+
+            scene = "game";
         }
     }
 
-    // ------------------------------------------------------------------------------------------
-    // --------------------------------------***CONTROLS***--------------------------------------
-    // ------------------------------------------------------------------------------------------
-    if (scene == "controls")
-    {
 
-    }
 
     // ------------------------------------------------------------------------------------------
     // --------------------------------------***GRAFIC***----------------------------------------
@@ -160,7 +153,7 @@ while (!Raylib.WindowShouldClose())
         Raylib.ClearBackground(Color.Blue);
 
 
-        Raylib.DrawText(points.ToString(), screenWidth / 2 - pointsWidth/2, 120, 50, Color.Black);
+        Raylib.DrawText(points.ToString(), screenWidth / 2 - pointsWidth / 2, 120, 50, Color.Black);
         player.Rita();
 
         foreach (Plattform pos in platformar)
@@ -194,11 +187,3 @@ while (!Raylib.WindowShouldClose())
     Raylib.EndDrawing();
 }
 
-
-public class Recs
-{
-Random random1 = new Random();
-List<Color> colors = new(){Color.Blue, Color.Red, Color.Yellow, Color.Green};
-
-// Rectangle recs = new Rectangle(random1.Next(1,1)., 800, 50, 50);
-}
