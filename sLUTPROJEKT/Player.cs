@@ -29,10 +29,10 @@ public class Player
 
         movement.Y += gravity;
 
-        if (characterRec.Y > 900)
-        {
-            movement.Y = bounce;
-        }
+        // if (characterRec.Y > 900)
+        // {
+        //     movement.Y = bounce;
+        // }
 
         characterRec.X += movement.X;
         characterRec.Y += movement.Y;

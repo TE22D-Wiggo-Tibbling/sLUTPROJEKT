@@ -95,7 +95,7 @@ while (!Raylib.WindowShouldClose())
         if (player.characterRec.Y > 900)
         {
             scene = "start";
-            Raylib.OpenURL("https://www.youtube.com/watch?v=4JzDttgdILQ");
+            // Raylib.OpenURL("https://www.youtube.com/watch?v=4JzDttgdILQ");
         }
 
 
