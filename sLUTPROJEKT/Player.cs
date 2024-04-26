@@ -4,7 +4,10 @@ using Raylib_cs;
 
 public class Player
 {
-
+public static void Hello()
+{
+    
+}
     public Vector2 movement = new Vector2(0, 0.1f);
 
     private float speed = 3;
