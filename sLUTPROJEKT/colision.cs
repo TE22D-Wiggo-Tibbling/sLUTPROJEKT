@@ -6,7 +6,7 @@ public class Collision
 {
 
 
-// ---------------------------------------------denna voiden bråkar lite------------------------------
+// ---------------------------------------------En fråga till micke iväg------------------------------
     public static void colision(Player player, List<Plattform> platformar,int points,int highScore,Rectangle startGround)
     {
          foreach (Plattform colision in platformar)
