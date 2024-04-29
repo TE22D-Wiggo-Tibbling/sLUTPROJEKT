@@ -4,10 +4,6 @@ using Raylib_cs;
 
 public class Player
 {
-public static void Hello()
-{
-    
-}
     public Vector2 movement = new Vector2(0, 0.1f);
 
     private float speed = 3;
@@ -17,7 +13,7 @@ public static void Hello()
     public Rectangle characterRec = new Rectangle(250, 800, 50, 50);
 
     public float bounce = -5;
-    public void Rörelse()
+    public void Movement()
     {
         movement.X = Vector2.Zero.X;
         if (Raylib.IsKeyDown(KeyboardKey.Left))
@@ -46,7 +42,7 @@ public static void Hello()
         }
     }
 
-    public void Rita()
+    public void Draw()
     {
         Raylib.DrawRectangleRec(characterRec, Color.Black);
     }

@@ -7,9 +7,9 @@ public class Collision
 
 
 // ---------------------------------------------En fråga till micke iväg------------------------------
-    public static void colision(Player player, List<Plattform> platformar,int points,int highScore,Rectangle startGround)
+    public static void Colision(Player player, List<Plattform> platforms,int points,int highScore,Rectangle startGround)
     {
-         foreach (Plattform colision in platformar)
+         foreach (Plattform colision in platforms)
         {
             if (Raylib.CheckCollisionRecs(player.characterRec, colision.size) && player.movement.Y > 0 && player.characterRec.Y + player.characterRec.Height > colision.size.Y)
             {
@@ -35,15 +35,15 @@ public class Collision
             }
         }
 
-        platformar.RemoveAll(p => p.size.X == 6000);
+        platforms.RemoveAll(p => p.size.X == 6000);
 
 
 
         if (player.characterRec.Y < 500 && player.movement.Y < 0)
         {
-            foreach (Plattform flyt in platformar)
+            foreach (Plattform move in platforms)
             {
-                flyt.size.Y -= player.movement.Y;
+                move.size.Y -= player.movement.Y;
             }
             startGround.Height -=1;
         }

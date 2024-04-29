@@ -23,7 +23,7 @@ int pointsWidth = Raylib.MeasureText(points.ToString(), 50);
 int highScore = 0;
 int highScoreLength = Raylib.MeasureText("HighScore:" + highScore.ToString(), 50) / 2;
 
-List<Plattform> platformar = new();
+List<Plattform> platforms = new();
 
 
 
@@ -50,9 +50,9 @@ while (!Raylib.WindowShouldClose())
     if (scene == "game")
     {
 
-        player.Rörelse();
+        player.Movement();
 
-       Collision.colision(player,platformar,points,highScore,startGround);
+       Collision.Colision(player,platforms,points,highScore,startGround);
 
 
         // ------------------------------------------------------------------------------------------
@@ -85,13 +85,13 @@ while (!Raylib.WindowShouldClose())
             points = 0;
 
             // ----------------------------------------***PLATFORMAR***----------------------------------
-            platformar.Clear();
+            platforms.Clear();
             //Gör fem platformar
             for (int i = -1; i < 1000; i++)
             {
-                platformar.Add(new Plattform(i * -100));
+                platforms.Add(new Plattform(i * -100));
             }
-            platformar[0].size.X = screenWidth / 2 - platformar[0].size.Width / 2;
+            platforms[0].size.X = screenWidth / 2 - platforms[0].size.Width / 2;
 
             // ------------------------------------------***STARTGROUND***-------------------------------
 
@@ -120,11 +120,11 @@ while (!Raylib.WindowShouldClose())
 
 
         Raylib.DrawText(points.ToString(), screenWidth / 2 - pointsWidth / 2, 120, 50, Color.Black);
-        player.Rita();
+        player.Draw();
 
-        foreach (Plattform pos in platformar)
+        foreach (Plattform pos in platforms)
         {
-            pos.rita();
+            pos.Draw();
         }
 
         Raylib.DrawRectangleRec(startGround, Color.Brown);
