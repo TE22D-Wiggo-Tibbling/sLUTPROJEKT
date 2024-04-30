@@ -2,39 +2,26 @@
 using System.Runtime.CompilerServices;
 using Raylib_cs;
 
+// Använder Program.cs som källa för variablar
+
 int screenWidth = 500;
 int screenHeight = 900;
-
-Random random = new Random();
 
 Raylib.InitWindow(screenWidth, screenHeight, "Hello World");
 Raylib.SetTargetFPS(120);
 
 
 string scene = "start";
-
-Player player = new Player();
-
-
-Rectangle startGround = new Rectangle();
-
-int points = 0;
-int pointsWidth = Raylib.MeasureText(points.ToString(), 50);
-int highScore = 0;
-int highScoreLength = Raylib.MeasureText("HighScore:" + highScore.ToString(), 50) / 2;
-
-List<Plattform> platforms = new();
-
-
-
-// ----------------------------------***start***-------------------------------------------
-
 Vector2 buttonSize = new(400, 100);
 Rectangle startButton = new Rectangle(screenWidth / 2 - buttonSize.X / 2, 600, buttonSize);
-int startTextWidth = Raylib.MeasureText("start", 100) / 2;
+
+int points = 0;
+int highScore = 0;
 
 
-
+Player player = new Player();
+Rectangle startGround = new Rectangle();
+List<Plattform> platforms = new();
 
 
 while (!Raylib.WindowShouldClose())
@@ -43,70 +30,37 @@ while (!Raylib.WindowShouldClose())
 
     Rectangle mouseRec = new Rectangle(mouse.X, mouse.Y, 1, 1);
 
-
     // ------------------------------------------------------------------------------------------
-    // --------------------------------------***GAME***------------------------------------------
+    // --------------------------------------***LOGIC***------------------------------------------
     // ------------------------------------------------------------------------------------------
     if (scene == "game")
     {
 
-        player.Movement();
+        player.Controls();
 
-       Collision.Colision(player,platforms,points,highScore,startGround);
+       (points, startGround, highScore) = GameScreen.Colision(player,platforms,points,highScore,startGround);
 
 
         // ------------------------------------------------------------------------------------------
         // --------------------------------------***LOSING***----------------------------------------
         // ------------------------------------------------------------------------------------------
-        if (player.characterRec.Y > 900)
+        if (player.CharacterRec.Y > 900)
         {
             scene = "start";
-            Raylib.OpenURL("https://www.youtube.com/watch?v=4JzDttgdILQ");
         }
 
 
     }
 
-
-    // ------------------------------------------------------------------------------------------
-    // --------------------------------------***START***------------------------------------------
-    // ------------------------------------------------------------------------------------------
     if (scene == "start")
     {
+        // -------------------------------Reset---------------------------------------
         if (Raylib.CheckCollisionRecs(mouseRec, startButton) && Raylib.IsMouseButtonPressed(MouseButton.Left))
         {
 
-
-            // ------------------------------------------------------------------------------------------
-            // --------------------------------------***RESET***-----------------------------------------
-            // ------------------------------------------------------------------------------------------
-
-            // -----------------------------------------***POINTS***-------------------------------------
-            points = 0;
-
-            // ----------------------------------------***PLATFORMAR***----------------------------------
-            platforms.Clear();
-            //Gör fem platformar
-            for (int i = -1; i < 1000; i++)
-            {
-                platforms.Add(new Plattform(i * -100));
-            }
-            platforms[0].size.X = screenWidth / 2 - platforms[0].size.Width / 2;
-
-            // ------------------------------------------***STARTGROUND***-------------------------------
-
-            startGround = new(0, 850, screenWidth, screenHeight - 850);
-
-            // --------------------------------------***PLAYER***----------------------------------------
-            player.characterRec.X = screenWidth / 2 - player.characterRec.Width / 2;
-            player.characterRec.Y = 750;
-
-
-            scene = "game";
+           (points,scene,startGround) = StartScreen.Reset(points,platforms,screenWidth,screenHeight,startGround,player,scene);
         }
     }
-
-
 
     // ------------------------------------------------------------------------------------------
     // --------------------------------------***GRAFIC***----------------------------------------
@@ -115,38 +69,12 @@ while (!Raylib.WindowShouldClose())
 
     if (scene == "game")
     {
-
-        Raylib.ClearBackground(Color.Blue);
-
-
-        Raylib.DrawText(points.ToString(), screenWidth / 2 - pointsWidth / 2, 120, 50, Color.Black);
-        player.Draw();
-
-        foreach (Plattform pos in platforms)
-        {
-            pos.Draw();
-        }
-
-        Raylib.DrawRectangleRec(startGround, Color.Brown);
-
-        // ----------------------Controls-----------------------------------
-
-        if (Raylib.CheckCollisionRecs(player.characterRec, startGround))
-        {
-            Raylib.DrawText("SPACE to start", 50, 850, 25, Color.Black);
-            Raylib.DrawText("Move with arrow keys", 50, 875, 25, Color.Black);
-        }
+        GameScreen.DrawGameScreen(points,screenWidth,screenWidth,startGround,player,platforms);
     }
 
     if (scene == "start")
     {
-        Raylib.ClearBackground(Color.Brown);
-
-
-        Raylib.DrawText("HighScore:" + highScore.ToString(), screenWidth / 2 - highScoreLength, 100, 50, Color.Black);
-        Raylib.DrawRectangleRec(startButton, Color.Red);
-        Raylib.DrawText("start", screenWidth / 2 - startTextWidth, (int)startButton.Y, 100, Color.Black);
-
+        StartScreen.DrawStartScreen(highScore,startButton,screenHeight,screenWidth);
     }
 
 

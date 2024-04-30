@@ -4,47 +4,45 @@ using Raylib_cs;
 
 public class Player
 {
-    public Vector2 movement = new Vector2(0, 0.1f);
+    public Vector2 Movement = new Vector2(0, 0.1f);
 
-    private float speed = 3;
+    private float Speed = 3;
 
-    public float gravity = 0.1f;
+    public float Gravity = 0.1f;
 
-    public Rectangle characterRec = new Rectangle(250, 800, 50, 50);
+    public Rectangle CharacterRec = new Rectangle(250, 800, 50, 50);
 
-    public float bounce = -5;
-    public void Movement()
+    public float Bounce = -5;
+    public void Controls()
     {
-        movement.X = Vector2.Zero.X;
+        // Controler
+        Movement.X = Vector2.Zero.X;
         if (Raylib.IsKeyDown(KeyboardKey.Left))
         {
-            movement.X = -speed;
+            Movement.X = -Speed;
         }
         else if (Raylib.IsKeyDown(KeyboardKey.Right))
         {
-            movement.X = speed;
+            Movement.X = Speed;
         }
 
+        // Gravitation
+        Movement.Y += Gravity;
 
-        movement.Y += gravity;
+        // flyttar spelare
+        CharacterRec.X += Movement.X;
+        CharacterRec.Y += Movement.Y;
 
-        // if (characterRec.Y > 900)
-        // {
-        //     movement.Y = bounce;
-        // }
-
-        characterRec.X += movement.X;
-        characterRec.Y += movement.Y;
-
-        if (characterRec.Y < 490)
+        // När spelaren kommer förbi 490 stannar spelaren i mitten
+        if (CharacterRec.Y < 490)
         {
-            characterRec.Y -= movement.Y;
+            CharacterRec.Y -= Movement.Y;
         }
     }
 
     public void Draw()
     {
-        Raylib.DrawRectangleRec(characterRec, Color.Black);
+        Raylib.DrawRectangleRec(CharacterRec, Color.Black);
     }
 }
 

@@ -6,16 +6,17 @@ public class Plattform
 {
     static Random random = new Random();
 
-    public Rectangle size = new Rectangle();
+    public Rectangle Size = new Rectangle();
 
-    public Plattform(int height)
-    {
-        size = new(random.Next(0, 500 - 80), height, 80, 5);
+    public Plattform(int Height)
+    {   
+        // Platformens position ändras med höjden som är i i en forloop 
+        Size = new(random.Next(0, 500 - 80), Height, 80, 5);
     }
 
     public void Draw()
     {
-        Raylib.DrawRectangleRec(size, Color.Green);
+        Raylib.DrawRectangleRec(Size, Color.Green);
     }
 
 }

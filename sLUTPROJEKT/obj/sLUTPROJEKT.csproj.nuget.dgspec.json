@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "G:\\Min enhet\\prog 1 med micke B!!\\sLUTPROJEKT\\sLUTPROJEKT\\sLUTPROJEKT.csproj": {}
+    "g:\\Min enhet\\prog 1 med micke B!!\\sLUTPROJEKT\\sLUTPROJEKT\\sLUTPROJEKT.csproj": {}
   },
   "projects": {
-    "G:\\Min enhet\\prog 1 med micke B!!\\sLUTPROJEKT\\sLUTPROJEKT\\sLUTPROJEKT.csproj": {
+    "g:\\Min enhet\\prog 1 med micke B!!\\sLUTPROJEKT\\sLUTPROJEKT\\sLUTPROJEKT.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Min enhet\\prog 1 med micke B!!\\sLUTPROJEKT\\sLUTPROJEKT\\sLUTPROJEKT.csproj",
+        "projectUniqueName": "g:\\Min enhet\\prog 1 med micke B!!\\sLUTPROJEKT\\sLUTPROJEKT\\sLUTPROJEKT.csproj",
         "projectName": "sLUTPROJEKT",
-        "projectPath": "G:\\Min enhet\\prog 1 med micke B!!\\sLUTPROJEKT\\sLUTPROJEKT\\sLUTPROJEKT.csproj",
+        "projectPath": "g:\\Min enhet\\prog 1 med micke B!!\\sLUTPROJEKT\\sLUTPROJEKT\\sLUTPROJEKT.csproj",
         "packagesPath": "C:\\Users\\wiggo.tibbling\\.nuget\\packages\\",
-        "outputPath": "G:\\Min enhet\\prog 1 med micke B!!\\sLUTPROJEKT\\sLUTPROJEKT\\obj\\",
+        "outputPath": "g:\\Min enhet\\prog 1 med micke B!!\\sLUTPROJEKT\\sLUTPROJEKT\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
