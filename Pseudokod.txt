@@ -1,0 +1,20 @@
+När start kanpp trycks{
+ 
+ poäng blir till noll
+
+ ta bort alla platformar
+
+ loppar i och ökar varje gång upp till 1000{
+
+    skapa platform vid 1 men med 100 melanrum vid varje platform
+
+ }
+
+ första platformen sätts i mitten av skärmen
+
+ skapa/flytta startplatformen till position
+
+ sätt karaktär/spelare på startplatformen
+
+ byt sen till game
+}

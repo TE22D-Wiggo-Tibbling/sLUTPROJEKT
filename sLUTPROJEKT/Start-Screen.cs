@@ -9,6 +9,9 @@ public class StartScreen
         Raylib.ClearBackground(Color.Brown);
 
 
+        Raylib.DrawText("Studsa på blatformarna", screenWidth / 2 - Raylib.MeasureText("Studsa på blatformarna", 20) / 2, 250, 20, Color.Black);
+        Raylib.DrawText("Va snabb du kan bara landa på dem en gång", screenWidth / 2 - Raylib.MeasureText("Va snabb du kan bara landa på dem en gång", 20) / 2, 280, 20, Color.Black);
+        Raylib.DrawText("Om du falle kommer du dö :(", screenWidth / 2 - Raylib.MeasureText("Om du falle kommer du dö :(", 20) / 2, 310, 20, Color.Black);
         Raylib.DrawText("HighScore:" + highScore.ToString(), screenWidth / 2 - Raylib.MeasureText("HighScore:" + highScore.ToString(), 50) / 2, 100, 50, Color.Black);
         Raylib.DrawRectangleRec(startButton, Color.Red);
         Raylib.DrawText("start", screenWidth / 2 - Raylib.MeasureText("start", 100) / 2, (int)startButton.Y, 100, Color.Black);

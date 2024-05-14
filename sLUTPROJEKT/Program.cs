@@ -21,6 +21,8 @@ int highScore = 0;
 
 Player player = new Player();
 Rectangle startGround = new Rectangle();
+
+// Har lista för att jag vill kunna ändra på den under kodens gång. Med aray skulle det inte gå :)
 List<Plattform> platforms = new();
 
 
@@ -38,12 +40,9 @@ while (!Raylib.WindowShouldClose())
 
         player.Controls();
 
-       (points, startGround, highScore) = GameScreen.Colision(player,platforms,points,highScore,startGround);
+        (points, startGround, highScore) = GameScreen.Colision(player, platforms, points, highScore, startGround);
 
-
-        // ------------------------------------------------------------------------------------------
-        // --------------------------------------***LOSING***----------------------------------------
-        // ------------------------------------------------------------------------------------------
+        // Förlust
         if (player.CharacterRec.Y > 900)
         {
             scene = "start";
@@ -52,13 +51,13 @@ while (!Raylib.WindowShouldClose())
 
     }
 
-    if (scene == "start")
+   else if (scene == "start")
     {
         // -------------------------------Reset---------------------------------------
         if (Raylib.CheckCollisionRecs(mouseRec, startButton) && Raylib.IsMouseButtonPressed(MouseButton.Left))
         {
 
-           (points,scene,startGround) = StartScreen.Reset(points,platforms,screenWidth,screenHeight,startGround,player,scene);
+            (points, scene, startGround) = StartScreen.Reset(points, platforms, screenWidth, screenHeight, startGround, player, scene);
         }
     }
 
@@ -69,12 +68,12 @@ while (!Raylib.WindowShouldClose())
 
     if (scene == "game")
     {
-        GameScreen.DrawGameScreen(points,screenWidth,screenWidth,startGround,player,platforms);
+        GameScreen.DrawGameScreen(points, screenWidth, screenWidth, startGround, player, platforms);
     }
 
-    if (scene == "start")
+    else if (scene == "start")
     {
-        StartScreen.DrawStartScreen(highScore,startButton,screenHeight,screenWidth);
+        StartScreen.DrawStartScreen(highScore, startButton, screenHeight, screenWidth);
     }
 
 

@@ -15,7 +15,7 @@ public class Player
     public float Bounce = -5;
     public void Controls()
     {
-        // Controler
+        // läser in vänster och höger knampp och ändrar movement beroende på vad man trycker
         Movement.X = Vector2.Zero.X;
         if (Raylib.IsKeyDown(KeyboardKey.Left))
         {
@@ -26,7 +26,7 @@ public class Player
             Movement.X = Speed;
         }
 
-        // Gravitation
+        // Gravitation: lägger till movement ner så spelare börjar falla
         Movement.Y += Gravity;
 
         // flyttar spelare

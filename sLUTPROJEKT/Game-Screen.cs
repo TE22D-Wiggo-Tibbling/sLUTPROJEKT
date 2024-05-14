@@ -24,8 +24,8 @@ public class GameScreen
 
             }
             // Tar bort alla platformar som är vid 6000
-            platforms.RemoveAll(p => p.Size.X == 6000);
         }
+            platforms.RemoveAll(p => p.Size.X == 6000);
 
         // när man står på startground
         if (Raylib.CheckCollisionRecs(player.CharacterRec, startGround))
@@ -58,6 +58,8 @@ public class GameScreen
         return (points, startGround, highScore);
 
     }
+
+    // Rita Spel skärmen
     public static void DrawGameScreen(int points, int screenHeight, int screenWidth, Rectangle startGround, Player player, List<Plattform> plattforms)
     {
 
