@@ -4,9 +4,29 @@ using Raylib_cs;
 
 
 class Game{
+static int screenWidth = 500;
+static int screenHeight = 900;
 
 
-public static void WhileLoop(string scene, Player player, int points, Rectangle startGround, int highScore, List<Plattform> platforms, Rectangle startButton, int screenHeight, int screenWidth){
+
+static string scene = "start";
+static Vector2 buttonSize = new(400, 100);
+static Rectangle startButton = new Rectangle(screenWidth / 2 - buttonSize.X / 2, 600, buttonSize);
+
+static int points = 0;
+static int highScore = 0;
+
+
+static Player player = new Player();
+static Rectangle startGround = new Rectangle();
+
+// Har lista för att jag vill kunna ändra på den under kodens gång. Med aray skulle det inte gå :)
+static List<Plattform> platforms = new();
+
+public static void WhileLoop(){
+
+Raylib.InitWindow(screenWidth, screenHeight, "Hello World");
+Raylib.SetTargetFPS(120);
 
 while (!Raylib.WindowShouldClose())
 {
