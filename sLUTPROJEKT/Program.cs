@@ -17,6 +17,7 @@ Rectangle startButton = new Rectangle(screenWidth / 2 - buttonSize.X / 2, 600, b
 
 int points = 0;
 int highScore = 0;
+bool dead = false;
 
 
 Player player = new Player();
@@ -25,10 +26,6 @@ Rectangle startGround = new Rectangle();
 // Har lista för att jag vill kunna ändra på den under kodens gång. Med aray skulle det inte gå :)
 List<Plattform> platforms = new();
 
-// 
-// 
-// Gör detta till sin egna metod ;)
-// 
-// 
-Game.WhileLoop(scene,player,points,startGround,highScore,platforms,startButton,screenHeight,screenWidth);
+
+Game.WhileLoop(scene,player,points,startGround,highScore,platforms,startButton,screenHeight,screenWidth,dead);
 

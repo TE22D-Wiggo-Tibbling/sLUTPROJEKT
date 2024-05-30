@@ -5,7 +5,7 @@ using Raylib_cs;
 
 class Game{
 
-public static void WhileLoop(string scene,Player player,int points,Rectangle startGround,int highScore,List<Plattform> platforms,Rectangle startButton,int screenHeight,int screenWidth){
+public static void WhileLoop(string scene,Player player,int points,Rectangle startGround,int highScore,List<Plattform> platforms,Rectangle startButton,int screenHeight,int screenWidth,bool dead){
 
 while (!Raylib.WindowShouldClose())
 {
@@ -27,6 +27,7 @@ while (!Raylib.WindowShouldClose())
         if (player.CharacterRec.Y > 900)
         {
             scene = "start";
+            dead = true;
         }
 
 
@@ -38,7 +39,7 @@ while (!Raylib.WindowShouldClose())
         if (Raylib.CheckCollisionRecs(mouseRec, startButton) && Raylib.IsMouseButtonPressed(MouseButton.Left))
         {
 
-            (points, scene, startGround) = StartScreen.Reset(points, platforms, screenWidth, screenHeight, startGround, player, scene);
+            (points, scene, startGround) = StartScreen.Reset(points, platforms, screenWidth, screenHeight, startGround, player,scene,dead);
         }
     }
 
@@ -54,7 +55,7 @@ while (!Raylib.WindowShouldClose())
 
     else if (scene == "start")
     {
-        StartScreen.DrawStartScreen(highScore, startButton, screenHeight, screenWidth);
+        StartScreen.DrawStartScreen(highScore, startButton, screenHeight, screenWidth, dead);
     }
 
 

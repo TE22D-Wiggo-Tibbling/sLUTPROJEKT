@@ -4,7 +4,7 @@ using Raylib_cs;
 
 public class StartScreen
 {
-    public static void DrawStartScreen(int highScore, Rectangle startButton, int screenHeight, int screenWidth)
+    public static void DrawStartScreen(int highScore, Rectangle startButton, int screenHeight, int screenWidth, bool dead)
     {
         Raylib.ClearBackground(Color.Brown);
 
@@ -12,13 +12,21 @@ public class StartScreen
         Raylib.DrawText("Studsa på blatformarna", screenWidth / 2 - Raylib.MeasureText("Studsa på blatformarna", 20) / 2, 250, 20, Color.Black);
         Raylib.DrawText("Va snabb du kan bara landa på dem en gång", screenWidth / 2 - Raylib.MeasureText("Va snabb du kan bara landa på dem en gång", 20) / 2, 280, 20, Color.Black);
         Raylib.DrawText("Om du falle kommer du dö :(", screenWidth / 2 - Raylib.MeasureText("Om du falle kommer du dö :(", 20) / 2, 310, 20, Color.Black);
+
+        if (dead)
+        {
+        Raylib.DrawText("Du föll", screenWidth / 2 - Raylib.MeasureText("Du föll", 20) / 2, 360, 20, Color.Red);
+        Raylib.DrawText("Se till att altid studsa till en ny platform", screenWidth / 2 - Raylib.MeasureText("Se till att altid studsa till en ny platform", 20) / 2, 390, 20, Color.Red);
+        Raylib.DrawText("Använd pilarna för att röra på dig", screenWidth / 2 - Raylib.MeasureText("Använd pilarna för att röra på dig", 20) / 2, 420, 20, Color.Red);
+        }
+
         Raylib.DrawText("HighScore:" + highScore.ToString(), screenWidth / 2 - Raylib.MeasureText("HighScore:" + highScore.ToString(), 50) / 2, 100, 50, Color.Black);
         Raylib.DrawRectangleRec(startButton, Color.Red);
         Raylib.DrawText("start", screenWidth / 2 - Raylib.MeasureText("start", 100) / 2, (int)startButton.Y, 100, Color.Black);
 
     }
 
-    public static (int, string, Rectangle) Reset(int points, List<Plattform> platforms, int screenWidth, int screenHeight, Rectangle startGround, Player player, string scene)
+    public static (int, string, Rectangle) Reset(int points, List<Plattform> platforms, int screenWidth, int screenHeight, Rectangle startGround, Player player, string scene,bool dead)
     {
         points = 0;
 
@@ -44,7 +52,7 @@ public class StartScreen
 
         // Byter scene
         scene = "game";
-
+        
         return (points, scene, startGround);
     }
 }
